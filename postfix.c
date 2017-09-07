@@ -1,96 +1,85 @@
+/*Description:Evaluation of postfix expression
+ * Learner: shaih shafaque naushad
+ */
 #include<stdio.h>
-#include<ctype.h> //for isaplha() function
+#include<ctype.h>
+#define MAX 100
 
-typedef struct conversion
+typedef struct stack
 {
-	char a[30];
+	int a[MAX];
 	int top;
 }stack;
 
-void push(stack*,char c);
-	
-int pop(stack*);
+void push(struct stack *ps,char n)
+{
+	if(ps->top!=MAX-1)
+	{
+		ps->top++;
+		ps->a[ps->top]=n;
+	}
+	else
+		printf("\nSTACK IS FULL");
+}
 
-int operation(int num1,int num2,char opr);
+int pop(struct stack *ps)
+{
+	return(ps->a[ps->top--]);
+}
 
-int evaluate(char pos[]);
+int operation(int n1,int n2,char opr)
+{
+	int ans;
+	switch(opr)
+	{
+		case '+':
+			ans=n1+n2;
+			break;
+		case '*':
+			ans=n1*n2;
+			break;
+		case '-':
+			ans=n1-n2;
+			break;
+		case '/':
+			ans=n1/n2;
+		break;
+	}
+	return(ans);
+}
+
+int evaluate(char post[])
+{
+	stack s1;
+	int i,num1,num2,eval;
+	s1.top=-1;
+	for(i=0;post[i]!='\0';i++)
+	{
+		if(isdigit(post[i])){
+			push(&s1,post[i]-'0');
+			printf("\n%c-%c",post[i]-'0',post[i]);
+		}
+		else
+		{
+			num2=pop(&s1);
+			num1=pop(&s1);
+			eval=operation(num1,num2,post[i]);
+			push(&s1,eval);
+		}
+	}
+	return pop(&s1);
+}
 
 int main()
 {
 	char postfix[30];
-	printf("\nENTER POSTFIX EXPRESSION\n");
+	int result;
+	printf("ENTER THE POSTFIX EXPRESSION\n");
 	scanf("%s",postfix);
-	printf("\n\nEVALUATION OF POSTFIX EXPRESSION=%d\n",evaluate(postfix));
+	result=evaluate(postfix);
+	printf("\nANS= %d",result);
 	return 0;
 }
-
-int operation(int num1,int num2, char opr)
-{
-	switch (opr)
-	{
-	case '+':
-	return num1+num2;
-	case '-':
-	return num1-num2;
-	case '*':
-	return num1*num1;
-	case '/':
-	return num1/num2;
-	
- }
-}
-
-int evaluate(char pos[])
-{
-	int result,e1,e2,i=0;
-	char opr;
-	stack s;
-	
-	while(pos[i]!='\0')
-	{
-		opr=pos[i];
-		if(isdigit(opr))
-		{
-			push(&s,opr-'0');
-		}
-		else
-		{
-			e1=pop(&s);
-			e2=pop(&s);
-			result=operation(e1,e2,opr);
-			push(&s,result);
-		}
-		i++;
-	}
-		return pop(&s);
-	
-}
-
-void push(stack *s,char c)
-{
-	if(s->top>29)
-	{
-		printf("stack is full\n");
-		return;
-	}
-	s->top++;
-	s->a[s->top]=c;
-}
-
-int pop(stack *s)
-{
-	if(s->top=-1)
-	{
-		printf("stack is empty\n");
-		return 0;
-} 
-else
-    {
-		char data=s->a[s->top--];
-		return data;
-    }
-}
-
 	
 				
 					
