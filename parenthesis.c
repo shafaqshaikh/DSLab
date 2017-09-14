@@ -89,3 +89,13 @@ int main()
 	checkedbalanced(exp);
 	return 0;
 }
+//OUTPUT
+/*ENTER THE EXPRESSION CONTAINING PARENTHESES
+{{[()]}
+
+Invalid Expression
+ENTER THE EXPRESSION CONTAINING PARENTHESES
+{{{()}}}
+
+Expression is valid
+

@@ -80,6 +80,11 @@ int main()
 	printf("\nANS= %d",result);
 	return 0;
 }
+//OUTPUT:
+/*ENTER THE POSTFIX EXPRESSION
+ab*-cd/
+
+ANS= -5
 	
 				
 					

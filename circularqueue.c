@@ -1,7 +1,6 @@
-/*description:Array implementation of queue
- * learner:shaikh shafaque naushad
+/*Description:Array implementation of circular queue
+ * Learner:shaikh shafaq naushad
  */
- 
 #include<stdio.h>
 #include<stdlib.h>
 #define MAX_SIZE 10
@@ -9,7 +8,7 @@
 int queue[MAX_SIZE],front=-1,rear=-1;
 
 int isFull(){
-	return rear==MAX_SIZE-1;	
+	return ((rear==MAX_SIZE-1 && front==0)||(rear+1==front));	
 }
 
 int isEmpty(){
@@ -17,22 +16,28 @@ int isEmpty(){
 }
 
 void display(){
-	int i;
-	if(!isEmpty())
-		for(i=front;i<=rear;i++)
+	int i=front;
+	if(!isEmpty()){
+		while(i!=rear){
 			printf("%d\t",queue[i]);
+			i=(i+1)%MAX_SIZE;
+		}
+		printf("%d\t",queue[i]);
+	}
 	else{
-		printf("\nQueue is Empty");
+		printf("\nQueue is Empty.");
 	}	
 			
 }
 
 void insertqueue(int e){
 	if(!isFull()){
-		queue[++rear]=e;
+		rear=(rear+1)%(MAX_SIZE);
+		queue[rear]=e;
 		if(front==-1)
 			front++;
 		printf("\nElement %d is successfully Inserted",e);
+		printf("\n%d-%d",front,rear);
 	}
 	else
 		printf("\nQueue is Full Element cannot be inserted.");	
@@ -45,8 +50,9 @@ void deletequeue(){
 		if(front==rear)
 			front=rear=-1;
 		else
-			front++;
-		printf("\nThe element deleted is %d",d);	
+			front=(front+1)%(MAX_SIZE);
+		printf("\nThe element deleted is %d",d);
+		printf("\n%d-%d",front,rear);	
 	}
 	else
 		printf("\nQueue is Empty");	
@@ -61,6 +67,7 @@ int main(){
 		scanf("%d",&choice);	//take input in choice variable
 		switch(choice){
 			case 1:
+				printf("\nElements of queue are");
 				display();
 				break;
 			case 2:
@@ -89,9 +96,10 @@ int main(){
 4.Exit
 Enter your choice: 2
 
-Enter the elment to be inserted: 40
+Enter the elment to be inserted: 30
 
-Element 40 is successfully Inserted
+Element 30 is successfully Inserted
+0-0
 
 Enter
 1.Display
@@ -100,9 +108,10 @@ Enter
 4.Exit
 Enter your choice: 2
 
-Enter the elment to be inserted: 30
+Enter the elment to be inserted: 40
 
-Element 30 is successfully Inserted
+Element 40 is successfully Inserted
+0-1
 
 Enter
 1.Display
@@ -114,6 +123,7 @@ Enter your choice: 2
 Enter the elment to be inserted: 20
 
 Element 20 is successfully Inserted
+0-2
 
 Enter
 1.Display
@@ -121,16 +131,8 @@ Enter
 3.Delete
 4.Exit
 Enter your choice: 1
-40	30	20	
 
-Enter
-1.Display
-2.Insert
-3.Delete
-4.Exit
-Enter your choice: 3
-
-The element deleted is 40
+Elements of queue are30	40	20	
 
 Enter
 1.Display
@@ -140,6 +142,7 @@ Enter
 Enter your choice: 3
 
 The element deleted is 30
+1-2
 
 Enter
 1.Display

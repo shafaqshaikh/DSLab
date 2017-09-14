@@ -102,8 +102,14 @@ char pop(stack *s)
 		return data;
     }
 }
+//OUTPUT
+/*ENTER INFIX EXPRESSION
+A+B-C*D
+stack is empty
 
-	
+
+POSTFIX EXPRESSION
+AB+CD*-*/	
 				
 					
 			

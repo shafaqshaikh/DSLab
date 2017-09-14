@@ -82,5 +82,74 @@ int main(){
 	}while(1);
 	return 0;
 }
+//OUTPUT
+/*Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 1
+
+Element at the top of stack is : 0
+Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 20
+
+Your element 20 is successfully inserted
+Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 30
+
+Your element 30 is successfully inserted
+Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 2
+
+Enter the elment to be inserted: 40
+
+Your element 40 is successfully inserted
+Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 3
+
+Your element 40 is successfully deleted
+Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 3
+
+Your element 30 is successfully deleted
+Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 1
+
+Element at the top of stack is : 20
+Enter
+1.Peek
+2.Push
+3.Pop
+4.Exit
+Enter your choice: 4*/
 
 
